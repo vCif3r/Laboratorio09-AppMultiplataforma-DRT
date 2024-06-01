@@ -1,7 +1,9 @@
 
 import 'package:fl_components/router/app_routes.dart';
 import 'package:fl_components/themes/app_theme.dart';
+import 'package:fl_components/themes/theme_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 
 class HomeScreen extends StatelessWidget {
@@ -12,11 +14,11 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text(
-          'Componentes de Flutter General',
-          style: TextStyle(color: Colors.white)
-          ),
+        title: const Text('Componentes de Flutter General',style: TextStyle(color: Colors.white)),
         elevation: 0,
+        actions: [
+          
+        ],
         //backgroundColor: Colors.indigo[800],
       ),
 
@@ -33,7 +35,12 @@ class HomeScreen extends StatelessWidget {
         ),
         separatorBuilder:(context, index) => const Divider(),
         itemCount: AppRoutes.menuOptions.length
-        ),
+      ),floatingActionButton: FloatingActionButton(
+        onPressed: (){
+          Provider.of<ThemeProvider>(context, listen: false).toggleTheme();
+        },
+        backgroundColor: Colors.red,
+        child: const Icon(Icons.dark_mode),),
     );
   }
 }
